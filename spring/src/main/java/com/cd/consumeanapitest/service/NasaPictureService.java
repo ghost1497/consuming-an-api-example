@@ -39,8 +39,9 @@ public class NasaPictureService {
 
         try{
             ResponseEntity<NasaPicture> responseFromNasa = restTemplate.getForEntity(URI.create(buildPictureOfTheDayUrl()), NasaPicture.class);
-            if(!HttpStatus.OK.equals(responseFromNasa.getStatusCode())){
+            if(HttpStatus.OK.equals(responseFromNasa.getStatusCode())){
                 picOfTheDay = responseFromNasa.getBody();
+                logger.info(picOfTheDay.toString());
             }
 
         }catch (Exception e){
